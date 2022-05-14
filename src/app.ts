@@ -1,13 +1,13 @@
 import 'dotenv/config';
 import express from 'express';
-import ProductRouter from './routes/product.routes';
+import routes from './routes';
 import error from './middlewares/error';
 
 const app = express();
 
 app.use(express.json());
 
-app.use(ProductRouter);
+app.use(routes);
 
 app.use(error);
 
