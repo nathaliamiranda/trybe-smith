@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import ProductService from '../../services/product/gettall.product.service';
+import ProductService from '../../services/product/product.service';
 
 class ProductController {
   constructor(private productService = new ProductService()) { }
