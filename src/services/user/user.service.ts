@@ -1,6 +1,7 @@
 import connection from '../../models/connection';
 import UserModel from '../../models/user/user.model';
 import IUser from '../../interfaces/user.interface';
+import { signJwt } from '../../helpers/generate.token';
 
 class UserService {
   public model: UserModel;
@@ -9,8 +10,9 @@ class UserService {
     this.model = new UserModel(connection);
   }
 
-  public create(user: IUser): Promise<IUser> {
-    return this.model.create(user);
+  public async create(user: IUser): Promise<string> {
+    await this.model.create(user);
+    return signJwt({ username: user.username });
   }
 }
 
