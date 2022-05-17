@@ -11,8 +11,8 @@ class UserService {
   }
 
   public async create(user: IUser): Promise<string> {
-    await this.model.create(user);
-    return signJwt({ username: user.username });
+    const { id } = await this.model.create(user);
+    return signJwt({ id, username: user.username });
   }
 }
 
