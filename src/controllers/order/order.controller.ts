@@ -13,5 +13,17 @@ class OrderController {
       next(err);
     }
   };
+  
+  public create = async (req: Request, res: Response, next: NextFunction) => {
+    const { productsIds } = req.body;
+    const { user: userId } = req;
+    
+    try {
+      await this.orderService.create({ userId, productsIds });
+      return res.status(201).json({ userId, productsIds });
+    } catch (err) {      
+      next(err);
+    }
+  };
 }
 export default OrderController;
