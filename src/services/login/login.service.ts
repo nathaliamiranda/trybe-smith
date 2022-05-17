@@ -17,7 +17,7 @@ export default class LoginService {
 
     if (getUser === null) return { message: 'Username or password invalid' };
 
-    const token = signJwt({ username: user.username });
+    const token = signJwt({ id: getUser.id, username: user.username });
     return { token };
   };
 }  
