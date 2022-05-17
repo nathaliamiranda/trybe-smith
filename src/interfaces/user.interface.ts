@@ -2,7 +2,7 @@ interface IUser {
   id: number,
   username: string,
   classe: string,
-  level: 1,
+  level: number,
   password: string
 }
 
