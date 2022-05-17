@@ -10,10 +10,10 @@ class UserService {
     this.model = new UserModel(connection);
   }
 
-  public async create(user: IUser): Promise<string> {
+  public create = async (user: IUser): Promise<string> => {
     const { id } = await this.model.create(user);
     return signJwt({ id, username: user.username });
-  }
+  };
 }
 
 export default UserService;

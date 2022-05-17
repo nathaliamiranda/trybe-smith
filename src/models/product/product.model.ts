@@ -8,14 +8,14 @@ export default class ProductModel {
     this.connection = connection;
   }
 
-  public async getAll(): Promise<Iproduct[]> {
+  public getAll = async (): Promise<Iproduct[]> => {
     const result = await this.connection
       .execute('SELECT * FROM Trybesmith.Products;');
     const [rows] = result;
     return rows as Iproduct[];
-  }
+  };
 
-  public async create(product: Iproduct): Promise<Iproduct> {
+  public create = async (product: Iproduct): Promise<Iproduct> => {
     const { name, amount } = product;
     const result = await this.connection.execute<ResultSetHeader>(
       'INSERT INTO Trybesmith.Products (name, amount) VALUES (?, ?)',
@@ -24,5 +24,5 @@ export default class ProductModel {
     const [dataInserted] = result;
     const { insertId } = dataInserted;
     return { id: insertId, ...product };
-  }
+  };
 }

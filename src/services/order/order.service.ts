@@ -9,10 +9,10 @@ export default class OrderService {
     this.model = new OrderModel(connection);
   }
 
-  public async getAll(): Promise<IOrder[]> {
+  public getAll = async (): Promise<IOrder[]> => {
     const orders = await this.model.getAll();
     return orders;
-  }
+  };
 
   public create = async (order: IOrder): Promise<void> => {
     await this.model.create(order);

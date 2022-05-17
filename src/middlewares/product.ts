@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import Joi from 'joi';
 
-const productSchema = Joi.object({
+const productSchema = Joi.object().keys({
   name: Joi.string()
     .min(3)
     .required(),

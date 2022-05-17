@@ -8,7 +8,7 @@ class OrderModel {
     this.connection = connection;
   }
 
-  public async getAll(): Promise<IOrder[]> {
+  public getAll = async (): Promise<IOrder[]> => {
     const [orders] = await this.connection
       .execute<RowDataPacket[]>('SELECT * FROM Trybesmith.Orders');
 
@@ -21,9 +21,9 @@ class OrderModel {
         .filter((prod) => prod.orderId === ord.id)
         .map((e) => e.id) }));
     return result as IOrder[];
-  }
+  };
 
-  public async create(order: IOrder): Promise<void> {
+  public create = async (order: IOrder): Promise<void> => {
     const { userId, productsIds } = order;
     
     const [{ insertId }] = await this.connection
@@ -34,6 +34,6 @@ class OrderModel {
       await this.connection
         .execute('UPDATE Trybesmith.Products SET orderId = ? WHERE id = ?', [insertId, id]);
     });
-  }
+  };
 }
 export default OrderModel;

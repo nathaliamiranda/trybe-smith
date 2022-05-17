@@ -8,7 +8,7 @@ export default class ProductModel {
     this.connection = connection;
   }
   
-  public async create(user: IUser): Promise<IUser> {
+  public create = async (user: IUser): Promise<IUser> => {
     const { username, classe, password, level } = user;
 
     const [result] = await this.connection.execute<ResultSetHeader>(
@@ -18,5 +18,5 @@ export default class ProductModel {
     const { insertId: id } = result;
     const newUser: IUser = { id, username, classe, password, level };
     return newUser;
-  }
+  };
 }
