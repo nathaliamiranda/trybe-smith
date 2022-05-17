@@ -13,4 +13,8 @@ export default class OrderService {
     const orders = await this.model.getAll();
     return orders;
   }
+
+  public create = async (order: IOrder): Promise<void> => {
+    await this.model.create(order);
+  };
 }
